@@ -1,0 +1,1 @@
+SELECT * FROM bicing.bicing_final;
