@@ -58,10 +58,17 @@ Step 7: Using this dataset, I put together the visualisations to show the model'
 
 Gif of data + pictures of additional graphs
 
+The clearest patterns in the data when looking at number of bikes in use over time is in the daily and weekly seasonality. Unsurprisingly, use levels are higher during the day (up to 1200 bikes in use) and much lower during the night. Additionally, you can clearly see lower use levels overall on weekends and public holidays vs on weekdays. 
 
+Lastly, we can see that during the day, use levels peak twice, once between 8 and 9AM, and once again between 6 and 7PM. These peaks are extremely regular - using SQL queries, I discovered that of the 1000 highest peaks in bicycle use (i.e. 1000 timestamps with the highest number of bikes in use over the 5 months of the database), nearly 70% of them were either between 8-9AM or 6-8PM. 
 
+Show this tableau viz.
+
+Therefore, the data shows us 3 very regular patterns - high use during the day and low use at night; higher use on weekdays than on weekends; and very reliable peaks in use during 'rush hour' - between 8 and 9AM, and 6 and 8PM (especially 6-7PM). While this is not exactly surprising, the reliable concentration of the peaks at rush hour is worth noting.
 
 ### Rain and Bicing Use ###
+
+
 
 ### Temperature and Bicing Use ###
 
