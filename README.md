@@ -68,13 +68,70 @@ Therefore, the data shows us 3 very regular patterns - high use during the day a
 
 ### Rain and Bicing Use ###
 
+Images of rain peaks coinciding with lower peaks in bicycle use
+
+Another clear trend is that, via the open weather API providing us with hourly precipitation rates in mm, we can see that high rainfall often coincides with a lower peak in bicycle use, when looking at the peaks in use we just looked at (rush hours on weekdays). In the image above we can clearly see high rainfall coinciding with lower use of bikes during the rush hour peaks. 
+
+Therefore, the data shows what we would expect - high rainfall serves as a reliable indicator for a reduction in the use of bicycles. Put simply, fwere people take bicycles in the rain. 
 
 
 ### Temperature and Bicing Use ###
 
+The relationship between temperature and bicycle usage is more complex. Do high or low temperatures coincide with more bicycles being used? Is there a long-term seasonality in which bicing has higher use rates in summer than in winter (or vice versa due to heat?)
+
+Like the rain information, we got the temperature at hourly intervals from the open weather API. 
+
+Tableau viz of levels vs temperature
+
+Beyond some small observations, for example slightly higher levels of use during the times of day when bicycles are typically used the least (usually around 1-6AM) in the summer when comparing to the winter, looking at this graph showing the use of bicing bicycles over time vs the average temperature on each day, does not seem to tell us much. Overall, as the the average temperature drops between September and December, there is not a clear increase or decrease in daily or weekly use levels. 
+
+To explore the relationship between temperature and bicycle use a bit further, I looked at the following scatter plots, plotting temperature (y axis) vs bicycles in use (x axis), with a filter option fo temperature and time of day; 
+
+Show scatter plots
+
+Filtering through temperature and time of day allows us to see some of the subtle patterns in the relationship between temperature and bike use. Some of these are; 
+
+When looking at the evening (6-12PM), there is a clear positive correlation - higher temperatures coincide with higher use levels of bikes. This positive correlation is accentuated when looking purely at 'cold' or winter temperatures (between 3 and 10 degrees celsius).
+
+When looking at hotter summer temperatures (25 to 35 degrees celsius), there is a very clear positive correlation between temperature and bike use at night time (12PM to 6AM). Meaning, when it's hot, more people take bikes at night time, perhaps to go or come back from partying. 
+
+However, when you look at the same temperatures (25 to 35 degrees celsius) in the afternoon (12 to 6PM), rather than at night, there is a negative correlation; the higher the temperature, the fewer people take bikes. So when the temperatures get particularly high, more people tend to avoid Bicing in the afternoon. 
+
+Although it required some more thorough research, there are therefore subtle trends we can see when looking at temperature and bicing use. 
+
 ### Training and Implementing a Predictive Model for Number of Bicing Bikes in Use at Any Given Time ###
 
+Having explored the relationship between these variables (time of day, weekend and public holiday vs weekday, rainfall, temperature) and the number of Bicing bikes in use at any given time, I went on to train a predictive model based on these features, with the target variable as the number of bikes in use. The model was made to predict, for each timestamp, the number of bikes in use at that exact time, taking into account the weather and time of day/week. 
+
+Having tried various refression models as well as Time Series models (see Limitations for more information), the Random Forest Regressor model was giving the best results; r2 of 0.85 and RMSE of 89 (for values mostly falling between 300 and 1200). 
+
+Scatter plot from Python of predictions vs real results.
+
+The use of this model was therefore to use existing historical data on Bicing use to complete historical records where data was missing. In this case, the existing data the model was trained on was the data available on Open Data Barcelona, between August and December 2019. 
+
+Gif of predictive model
+
+As you can see from the visualisation, the model performed well at predicting the daily and weekly seasonality. Starting from January 2020, when there was no longer any official data, the model predicts higher peaks in use on weekdays, and also predicts more use during the day, as well as 2 clear daily peaks representing the rush hour times. 
+
+Image of rain
+
+In this visualisation we can see that the model also responds well to rainfall - we can see that, just as with the real data, high rainfall coincides with lower use in bicycles. 
+
+When looking in more detail at the model's performance, we can see that, since it was trained on times of the day (morning, afternoon, evening, night), rather than exact timestamps, it does not always predict the rush hour peaks in use at the correct times, often peaking at 11AM or 8PM, when the real peaks are very reliably at 8AM and 6 or 7PM. See 'Limitations' for more information on how I think this could be improved. 
+
 ### Conclusions ###
+
+Finding a patchy dataset from a public administration website, I was able to analyse the main trends and patterns thorugh EDA on Python and SQL, and by integrating weather information through a weather API. These main trends can be summarised as follows; 
+
+- Higher use of bikes on weekdays than on weekends or public holidays
+- Higher use during the day than during the night
+- 2 daily peaks on weekdays, very reliably between 8-9AM and between 6-8PM. 
+- Lower use of bikes when there is high rainfall. 
+- Subtle relationship between temperature and bikes use; for example; on hot nights, the higher the temperature, the more bikes are used; or on hot afternoons, the higher the temperature the fewer bikes in use. 
+
+Using these variables as features in a predictive model, I was able to train a model which can reliably take existing historical data and use it to fill in gaps or patches in the dataset, offering administrations or instutitions more visibility and insights into long-term historical data. 
+
+Public sector administration often deals with incomplete, inconsistent data spread across various sources or data collection methods. This is particularly true of the public sector due to lack of resources and technological know-how. The use of such predictive models to predict data in the past based on existing historical data could be of great use to public administrations which find themsleves limited when it comes to using existing data to make better decisions going forward. This shows how relatively simple predictive modelling can help public institutions do more with less when it comes to data. 
 
 ### Limitations ###
 
@@ -88,5 +145,6 @@ Therefore, the data shows us 3 very regular patterns - high use during the day a
 
 ### Next Steps ###
 
+Taking into account these limitations, the most obvious next step would be to improve the predictive model, preferably making the most of the detailed DateTime data by using a Time Series model. The Random Forest Regressor did well considering the few features it was trained on, so this has the potential to make the model even more reliable, predicting peaks in bike use at the correct times during rush hours. 
 
-
+Another next step would be to extend this technique to other data sets on Open Data Barcelona. Incomplete and out of date data sets are a common characteristic of the public sector, so using predictive modelling to fill gaps in historical data is a practice which could be extended across many other areas of open source public administration data. 
