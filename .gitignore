@@ -1,0 +1,7 @@
+.ipynb_checkpoints
+
+ignore/
+
+.DS_Store
+
+.cache.sqlite
