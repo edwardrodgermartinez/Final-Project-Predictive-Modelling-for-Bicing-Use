@@ -42,7 +42,7 @@ Step 2: Did some feature engineering to expand the dataset. With the use of the 
 
 Step 3: Used the Open Meteo API to integrate 2 new columns; one showing the level of precipitation at that timestamp in Barcelona (in mm), and the other showing the temperature (in degrees celsius), to the nearest hour. The API provided historical weather data with time intervals of 1 hour, so it was slightly less exact than the data set I had (time intervals between 5-15 minutes). For exmaple; this meant that for timestamp 18:36:00, the weather information in that row corresponds to the API's information for 18:00:00. 
 
-![Figure 1: Final Dataset](images/1.jpg)
+![Figure 1: Final Dataset](images/1.png)
 
 Step 4: Using this transformed data set, I imported the resulting csv file into Tableau and made the visualisations showing daily and weekly seasonality in Bicing use, as well as how use levels correlate with rainfall and temperature. 
 
@@ -50,7 +50,7 @@ Step 5: I used my transfored data set as a base to make a second dataset for the
 
 Step 6: I trained different predictive models on the available data. The features were; time of day, weekend/bank holiday or weekday, eve of weekend/bank holiday, temperature and rainfall. The target variable was the number of bikes in use. I used a Random Forest Regressor with an R2 of 0.85 and a RMSE of 89. I added a column to my dataset for 'y pred', representing the model's prediction for number of bikes in use at each given timestamp, side by side with the real data. From January 2019 onwards, there was no real data for the number of bikes in use, only the prediction. 
 
-![Figure 2: Final Dataset with dummies and y pred column representing predictive model prediction of number of bikes in use](images/2.jpg)
+![Figure 2: Final Dataset with dummies and y pred column representing predictive model prediction of number of bikes in use](images/2.png)
 
 Step 7: Using this dataset, I put together the visualisations to show the model's accuracy, as well as its use and limitations. 
 
