@@ -4,11 +4,11 @@
 
 ### December 2023 ###
 
-Gif here of predictive model?
+![logo](images/logo.png)
 
 Please feel free to explore the following Tableau link for an interactive version of the data visualisations.
 
-https://public.tableau.com/views/FillingtheGapsBicingandDataAnalytics/Model?:language=en-GB&publish=yes&:display_count=n&:origin=viz_share_link
+https://public.tableau.com/app/profile/edward.rodger.martinez/viz/FillingtheGapsBicingandDataAnalytics/FillingtheGaps
 
 ### Overview ###
 
