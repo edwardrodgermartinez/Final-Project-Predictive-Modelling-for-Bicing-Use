@@ -112,7 +112,7 @@ Having tried various refression models as well as Time Series models (see Limita
 
 The use of this model was therefore to use existing historical data on Bicing use to complete historical records where data was missing. In this case, the existing data the model was trained on was the data available on Open Data Barcelona, between August and December 2019. 
 
-Gif of predictive model
+![Figure 10: Real vs predicted data over time](images/10.gif)
 
 As you can see from the visualisation, the model performed well at predicting the daily and weekly seasonality. Starting from January 2020, when there was no longer any official data, the model predicts higher peaks in use on weekdays, and also predicts more use during the day, as well as 2 clear daily peaks representing the rush hour times. 
 
