@@ -43,6 +43,7 @@ Step 2: Did some feature engineering to expand the dataset. With the use of the 
 Step 3: Used the Open Meteo API to integrate 2 new columns; one showing the level of precipitation at that timestamp in Barcelona (in mm), and the other showing the temperature (in degrees celsius), to the nearest hour. The API provided historical weather data with time intervals of 1 hour, so it was slightly less exact than the data set I had (time intervals between 5-15 minutes). For exmaple; this meant that for timestamp 18:36:00, the weather information in that row corresponds to the API's information for 18:00:00. 
 
 ![Figure 1: Final Dataset](images/1.png)
+*Figure 1: Final Dataset*
 
 Step 4: Using this transformed data set, I imported the resulting csv file into Tableau and made the visualisations showing daily and weekly seasonality in Bicing use, as well as how use levels correlate with rainfall and temperature. 
 
@@ -51,32 +52,35 @@ Step 5: I used my transfored data set as a base to make a second dataset for the
 Step 6: I trained different predictive models on the available data. The features were; time of day, weekend/bank holiday or weekday, eve of weekend/bank holiday, temperature and rainfall. The target variable was the number of bikes in use. I used a Random Forest Regressor with an R2 of 0.85 and a RMSE of 89. I added a column to my dataset for 'y pred', representing the model's prediction for number of bikes in use at each given timestamp, side by side with the real data. From January 2019 onwards, there was no real data for the number of bikes in use, only the prediction. 
 
 ![Figure 2: Final Dataset with dummies and y pred column representing predictive model prediction of number of bikes in use](images/2.png)
+*Figure 2: Final Dataset with dummies and y pred column representing predictive model prediction of number of bikes in use*
 
 Step 7: Using this dataset, I put together the visualisations to show the model's accuracy, as well as its use and limitations. 
 
 ### Daily and Weekly Seasonality in Bicing Use ###
 
 ![Figure 3: Number of Bicing bikes in use over time, August - December 2018, updated every ~15 minutes](images/3.gif)
-
+*Figure 3: Number of Bicing bikes in use over time, August - December 2018, updated every ~15 minutes*
 
 The clearest patterns in the data when looking at number of bikes in use over time is in the daily and weekly seasonality. Unsurprisingly, use levels are higher during the day (up to 1200 bikes in use) and much lower during the night. Additionally, you can clearly see lower use levels overall on weekends and public holidays vs on weekdays. 
 
 ![Figure 4: Average number of bikes in use at any given time each day, weekdays vs weekends/public holidays](images/4.png)
+*Figure 4: Average number of bikes in use at any given time each day, weekdays vs weekends/public holidays*
 
 Lastly, we can see that during the day, use levels peak twice, once between 8 and 9AM, and once again between 6 and 7PM. These peaks are extremely regular - using SQL queries, I discovered that of the 1000 highest peaks in bicycle use (i.e. 1000 timestamps with the highest number of bikes in use over the 5 months of the database), 78% of them were either between 8-9AM or 6-8PM. 
 
 ![Figure 5: Times of day (grouped by hour slot) of 1000 highest peak times for number of bike in use](images/5.png)
+*Figure 5: Times of day (grouped by hour slot) of 1000 highest peak times for number of bike in use*
 
 Therefore, the data shows us 3 very regular patterns - high use during the day and low use at night; higher use on weekdays than on weekends; and very reliable peaks in use during 'rush hour' - between 8 and 9AM, and 6 and 8PM (especially 6-7PM). While this is not exactly surprising, the reliable concentration of the peaks at rush hour is worth noting.
 
 ### Rain and Bicing Use ###
 
 ![Figure 6: Number of Bicing bikes in use over time, and precipitation (mm), 26 October - 11 November 2018](images/6.png)
+*Figure 6: Number of Bicing bikes in use over time, and precipitation (mm), 26 October - 11 November 2018*
 
 Another clear trend is that, via the open weather API providing us with hourly precipitation rates in mm, we can see that high rainfall often coincides with a lower peak in bicycle use, when looking at the peaks in use we just looked at (rush hours on weekdays). In the image above we can clearly see high rainfall coinciding with lower use of bikes during the rush hour peaks. 
 
 Therefore, the data shows what we would expect - high rainfall serves as a reliable indicator for a reduction in the use of bicycles. Put simply, fwere people take bicycles in the rain. 
-
 
 ### Temperature and Bicing Use ###
 
@@ -85,12 +89,14 @@ The relationship between temperature and bicycle usage is more complex. Do high 
 Like the rain information, we got the temperature at hourly intervals from the open weather API. 
 
 ![Figure 7: Number of Bicing bikes in use over time, and temperature (°C), August - December 2018](images/7.gif)
+*Figure 7: Number of Bicing bikes in use over time, and temperature (°C), August - December 2018*
 
 Beyond some small observations, for example slightly higher levels of use during the times of day when bicycles are typically used the least (usually around 1-6AM) in the summer when comparing to the winter, looking at this graph showing the use of bicing bicycles over time vs the average temperature on each day, does not seem to tell us much. Overall, as the the average temperature drops between September and December, there is not a clear increase or decrease in daily or weekly use levels. 
 
 To explore the relationship between temperature and bicycle use a bit further, I looked at the following scatter plots, plotting temperature (y axis) vs bicycles in use (x axis), with a filter option fo temperature and time of day; 
 
 ![Figure 8: Correlation between temperature (°C) and number of bikes in use](images/8.gif)
+*Figure 8: Correlation between temperature (°C) and number of bikes in use*
 
 Filtering through temperature and time of day allows us to see some of the subtle patterns in the relationship between temperature and bike use. Some of these are; 
 
