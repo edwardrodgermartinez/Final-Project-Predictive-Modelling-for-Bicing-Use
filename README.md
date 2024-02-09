@@ -121,7 +121,8 @@ The use of this model was therefore to use existing historical data on Bicing us
 
 As you can see from the visualisation, the model performed well at predicting the daily and weekly seasonality. Starting from January 2020, when there was no longer any official data, the model predicts higher peaks in use on weekdays, and also predicts more use during the day, as well as 2 clear daily peaks representing the rush hour times. 
 
-Image of rain
+![Figure 10: Predicted number of bikes in use, with actual rainfall, 28 April - 6 May 2019](images/10.gif)
+*Figure 10: Predicted number of bikes in use, with actual rainfall, 28 April - 6 May 2019*
 
 In this visualisation we can see that the model also responds well to rainfall - we can see that, just as with the real data, high rainfall coincides with lower use in bicycles. 
 
