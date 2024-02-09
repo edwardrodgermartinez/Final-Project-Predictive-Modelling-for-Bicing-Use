@@ -61,11 +61,13 @@ Step 7: Using this dataset, I put together the visualisations to show the model'
 The clearest patterns in the data when looking at number of bikes in use over time is in the daily and weekly seasonality. Unsurprisingly, use levels are higher during the day (up to 1200 bikes in use) and much lower during the night. Additionally, you can clearly see lower use levels overall on weekends and public holidays vs on weekdays. 
 
 ![Figure 3: Average number of bikes in use at any given time each day, weekdays vs weekends/public holidays](images/3.png)
+
 *Figure 3: Average number of bikes in use at any given time each day, weekdays vs weekends/public holidays*
 
 Lastly, we can see that during the day, use levels peak twice, once between 8 and 9AM, and once again between 6 and 7PM. These peaks are extremely regular - using SQL queries, I discovered that of the 1000 highest peaks in bicycle use (i.e. 1000 timestamps with the highest number of bikes in use over the 5 months of the database), 78% of them were either between 8-9AM or 6-8PM. 
 
 ![Figure 4: Times of day (grouped by hour slot) of 1000 highest peak times for number of bike in use](images/4.png)
+
 *Figure 4: Times of day (grouped by hour slot) of 1000 highest peak times for number of bike in use*
 
 Therefore, the data shows us 3 very regular patterns - high use during the day and low use at night; higher use on weekdays than on weekends; and very reliable peaks in use during 'rush hour' - between 8 and 9AM, and 6 and 8PM (especially 6-7PM). While this is not exactly surprising, the reliable concentration of the peaks at rush hour is worth noting.
@@ -86,6 +88,7 @@ The relationship between temperature and bicycle usage is more complex. Do high 
 Like the rain information, we got the temperature at hourly intervals from the open weather API. 
 
 ![Figure 6: Number of Bicing bikes in use over time, and temperature (°C), August - December 2018](images/6.gif)
+
 *Figure 6: Number of Bicing bikes in use over time, and temperature (°C), August - December 2018*
 
 Beyond some small observations, for example slightly higher levels of use during the times of day when bicycles are typically used the least (usually around 1-6AM) in the summer when comparing to the winter, looking at this graph showing the use of bicing bicycles over time vs the average temperature on each day, does not seem to tell us much. Overall, as the the average temperature drops between September and December, there is not a clear increase or decrease in daily or weekly use levels. 
@@ -93,6 +96,7 @@ Beyond some small observations, for example slightly higher levels of use during
 To explore the relationship between temperature and bicycle use a bit further, I looked at the following scatter plots, plotting temperature (y axis) vs bicycles in use (x axis), with a filter option fo temperature and time of day; 
 
 ![Figure 7: Correlation between temperature (°C) and number of bikes in use](images/7.gif)
+
 *Figure 7: Correlation between temperature (°C) and number of bikes in use*
 
 Filtering through temperature and time of day allows us to see some of the subtle patterns in the relationship between temperature and bike use. Some of these are; 
@@ -112,6 +116,7 @@ Having explored the relationship between these variables (time of day, weekend a
 Having tried various refression models as well as Time Series models (see Limitations for more information), the Random Forest Regressor model was giving the best results; r2 of 0.85 and RMSE of 89 (for values mostly falling between 300 and 1200). 
 
 ![Figure 8: Real vs predicted data, with trend line](images/8.png)
+
 *Figure 8: Real vs predicted data, with trend line*
 
 The use of this model was therefore to use existing historical data on Bicing use to complete historical records where data was missing. In this case, the existing data the model was trained on was the data available on Open Data Barcelona, between August and December 2019. 
@@ -122,6 +127,7 @@ The use of this model was therefore to use existing historical data on Bicing us
 As you can see from the visualisation, the model performed well at predicting the daily and weekly seasonality. Starting from January 2020, when there was no longer any official data, the model predicts higher peaks in use on weekdays, and also predicts more use during the day, as well as 2 clear daily peaks representing the rush hour times. 
 
 ![Figure 10: Predicted number of bikes in use, with actual rainfall, 28 April - 6 May 2019](images/10.png)
+
 *Figure 10: Predicted number of bikes in use, with actual rainfall, 28 April - 6 May 2019*
 
 In this visualisation we can see that the model also responds well to rainfall - we can see that, just as with the real data, high rainfall coincides with lower use in bicycles. 
