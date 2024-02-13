@@ -1,7 +1,10 @@
-**/*.ipynb_checkpoints/
+.ipynb_checkpoints/
 
-**/*.ignore/
+ignore/
 
-**/.DS_Store
+.DS_Store
 
-**/.cache.sqlite
+.cache.sqlite
+
+
+
