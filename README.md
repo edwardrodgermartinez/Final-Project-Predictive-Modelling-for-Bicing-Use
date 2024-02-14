@@ -1,10 +1,8 @@
 # Filling the Gaps; Bicing Use and How Data Analytics Can Help Institutions Complete Historical Data Records #
 
-## Edward Rodger Martinez - Ironhack Final Project ##
+## Edward Rodger Martinez - Ironhack Final Project - December 2023 ##
 
 ![logo](images/logo2.png)
-
-### December 2023 ###
 
 Please feel free to explore the following Tableau link for an interactive version of the data visualisations.
 
