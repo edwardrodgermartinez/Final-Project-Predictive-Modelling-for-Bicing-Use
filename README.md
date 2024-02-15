@@ -2,7 +2,7 @@
 
 ## Edward Rodger Martinez - Ironhack Final Project - December 2023 ##
 
-![logo](images/logo2.png)
+![logo](images/logofinal.png)
 
 Please feel free to explore the following Tableau link for an interactive version of the data visualisations.
 
